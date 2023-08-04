@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt'
 import { TokenApiModel } from '../models/token-api.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,8 +24,16 @@ export class AuthService {
   
 
   signIn(loginObj : any){
+    debugger;
     return this.http.post<any>(`${this.baseUrl}authenticate`,loginObj)
   }
+  // signUp(userObj: any) {
+  //   return this.http.post<any>(`${this.baseUrl}register`, userObj);
+  // }
+
+  // signIn(loginObj: any) {
+  //   return this.http.post<TokenApiModel>(`${this.baseUrl}authenticate`, loginObj);
+  // }
 
   signOut(){
     localStorage.clear();
@@ -73,7 +82,7 @@ export class AuthService {
   renewToken(tokenApi : TokenApiModel){
     return this.http.post<any>(`${this.baseUrl}refresh`, tokenApi)
   }
-//applicant login
+
 
 
 

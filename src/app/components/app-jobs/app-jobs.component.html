@@ -15,7 +15,7 @@
     }
     .job-box {
     width: 280px; /* Set the desired width for each job box */
-    height: 400px; /* Set the desired height for each job box */
+    height: 550px; /* Set the desired height for each job box */
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
@@ -114,25 +114,137 @@
 
 <body>
  
+  <div class="container">
+
+    <div class="position-relative">
+      <input class="form-control border" type="text" name="search" [(ngModel)]="searchText" placeholder="Search by jobTitle, jobType, companyLocation, or companyName" (keydown.enter)="onEnterPressed($event)">
+      <span class="search-icon" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></span>
+      <span class="clear-icon" (click)="clearSearch()"><i class="fa fa-remove" aria-hidden="true"></i></span>
+    </div>
+ </div>
+
+
+
+
+  <!-- <div class="container">
+
+    <div class="search-results">
+
+      <div class="result" *ngFor="let result of searchResults; let i = index" [class.active]="i === selectedIndex"
+
+        (click)="selectResult()">
+
+        <div class="search-text" [innerHTML]="result.jobTitle | highlightPipe: searchQuery"
+
+          [ngClass]="{ 'highlighted': i === selectedIndex }">
+
+          {{ result.jobTitle }}
+
+        </div>
+
+        <span class="remove-icon" (click)="removeResult(result)">
+
+          <i class="fas fa-times"></i>
+
+        </span>
+
+      </div>
+
+    </div>
+
+  </div> -->
+
+
 
   <div class="body">
     <div class="container">
 <div class="jobs-row">
-      <div class="job-box" *ngFor="let item of jobsList | slice:(currentPage - 1) * itemsPerPage:currentPage * itemsPerPage">
-        <h3>{{ item.jobTitle }}</h3>
-        <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Company: </span> {{ item.companyName }}</p>
-        <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Experience: </span> {{ item.experience }}</p>
-        <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Skills: </span>{{ item.skills }}</p>
-        <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Job Type: </span>{{ item.jobType }}</p>
-        <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Location: </span>{{ item.location }}</p>
-        <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Job Description: </span> {{ item.jobDescription }}</p>
+      <!-- <div class="job-box" *ngFor="let item of jobsList | slice:(currentPage - 1) * itemsPerPage:currentPage * itemsPerPage">
+        <h3
+        [class.highlighted]="item.jobTitle.toLowerCase().includes(searchQuery.toLowerCase()) && searchQuery.length > 0 && item.jobTitle !== 'Software Engineer'">
+        {{ item.jobTitle }}</h3>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Company: </span> {{ item.companyName }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Experience: </span> {{ item.experience }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Skills: </span>{{ item.skills }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Vacancy: </span>{{ item.vacancy }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Job Type: </span>{{ item.jobType }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Qualification: </span>{{ item.qualification }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">PostedDate: </span>{{ item.postedDate }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">EndDate: </span>{{ item.endDate }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Location: </span>{{ item.companyLocation }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Job Description: </span> {{ item.jobDescription }}</p>
         <p>
-          <button id="uploadBtn" (click)="showUploadPopup()">Upload Resume</button>
-          <button *ngIf="!item.applied" (click)="apply(item)">Apply</button>
+          <button id="uploadBtn" (click)="showUploadPopup()" class="btn btn-secondary">Upload Resume</button>
+          <button *ngIf="!item.applied" class=" btn btn-primary" (click)="apply(item)">Apply</button>
           <span *ngIf="item.applied" class="btn btn-success">Applied</span>
         
         </p>
-      </div>
+      </div> -->
+      <div class="job-box"
+      *ngFor="let item of jobsList | filter:searchText | slice:(currentPage - 1) * itemsPerPage:currentPage * itemsPerPage">
+      <h3
+        class="item.jobTitle.toLowerCase().includes(searchText.toLowerCase()) && searchText.length > 0 ">
+        {{ item.jobTitle }}
+      </h3>
+      <p>
+        <span style="color: rgb(8, 8, 8); font-weight: 600;">Job Title: </span>
+        <ng-container *ngIf="searchText && item.jobTitle">
+          <ng-container *ngFor="let part of highlightText(item.jobTitle)">
+            <span [class.highlighted]="part.highlight">{{ part.text }}</span>
+          </ng-container>
+        </ng-container>
+        <span *ngIf="!searchText || !item.jobTitle">{{ item.jobTitle }}</span>
+      </p>
+     <p>
+        <span style="color: rgb(8, 8, 8); font-weight: 600;">Company Name: </span>
+        <ng-container *ngIf="searchText && item.companyName">
+          <ng-container *ngFor="let part of highlightText(item.companyName)">
+            <span [class.highlighted]="part.highlight">{{ part.text }}</span>
+          </ng-container>
+        </ng-container>
+        <span *ngIf="!searchText || !item.companyName">{{ item.companyName }}</span>
+      </p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Experience: </span> {{ item.experience }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Skills: </span>{{ item.skills }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Vacancy: </span>{{ item.vacancy }}</p>
+    
+    <p>
+        <span style="color: rgb(8, 8, 8); font-weight: 600;">Job Type: </span>
+        <ng-container *ngIf="searchText && item.jobType">
+          <ng-container *ngFor="let part of highlightText(item.jobType)">
+            <span [class.highlighted]="part.highlight">{{ part.text }}</span>
+          </ng-container>
+        </ng-container>
+        <span *ngIf="!searchText || !item.jobType">{{ item.jobType }}</span>
+    </p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Qualification: </span>{{ item.qualification }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">PostedDate: </span>{{ item.postedDate }}</p>
+      <p><span style="color: rgb(8, 8, 8); font-weight: 600;">EndDate: </span>{{ item.endDate }}</p>
+  
+     <p>
+        <span style="color: rgb(8, 8, 8); font-weight: 600;">Location: </span>
+         <ng-container *ngIf="searchText && item.companyLocation">
+          <ng-container *ngFor="let part of highlightText(item.companyLocation)">
+             <span [class.highlighted]="part.highlight">{{ part.text }}</span>
+          </ng-container>
+        </ng-container>
+        <span *ngIf="!searchText || !item.companyLocation">{{ item.companyLocation }}</span>
+    </p>
+    <p><span style="color: rgb(8, 8, 8); font-weight: 600;">Job Description: </span> {{ item.jobDescription }}</p>
+   
+
+       
+    <p>
+       <!-- <button id="uploadBtn" (click)="showUploadPopup()" class="btn btn-secondary">Upload Resume</button>  -->
+       <button id="uploadBtn" (click)="openUploadPopup(item.jobId)" style="margin-right: 3px;" class="btn btn-secondary highlight-button">Upload Resume</button>
+      <!-- <button *ngIf="item.applied" disabled class="btn btn-light">Resume Uploaded</button> -->
+      <button *ngIf="!item.applied" class=" btn btn-primary" (click)="apply(item)">Apply</button>
+      <span *ngIf="item.applied" class="btn btn-success">Applied</span>
+    
+    </p>
+
+      
+    </div>
     </div>
     
       <nav aria-label="Page navigation example">
@@ -155,14 +267,21 @@
   <div id="uploadPopup" class="popup" [ngClass]="{ 'active': showUploadPopupFlag }">
     <div class="popup-content upload">
       <h3 class="head">Upload Your Resume</h3>
-      <input type="file" id="resumeInput">
+      <h3>NAME</h3>
+      <input type="text" placeholder="ENTER NAME" name="name" [(ngModel)]="resumeData.name">
+      <h3>Email</h3>
+      <input type="text" placeholder="ENTER Email" name="email" [(ngModel)]="resumeData.email">
+      <input type="file" (change)="onFileSelected($event)">
       <div class="popup-buttons">
-        <button (click)="cancelUploadPopup()" class="button">Cancel</button>
-        <button type="submit" class="savebtn">Save</button>
+        <button class="button" (click)="cancelUpload()">Cancel</button>
+        <button class="savebtn"(click)="uploadResume()">Save</button>
+      
+      
      
       </div>
     </div>
   </div>
+
 
 
 

@@ -11,7 +11,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { JobsComponent } from './jobs/jobs.component';
-import { JobssectionComponent } from './jobssection/jobssection.component';
+//import { JobssectionComponent } from './jobssection/jobssection.component';
 import { AppLoginComponent } from './components/app-login/app-login.component';
 import { AppSignupComponent } from './components/app-signup/app-signup.component';
 import { ApptokenInterceptor } from './interceptors/apptoken.interceptor';
@@ -20,6 +20,26 @@ import { AppJobsComponent } from './components/app-jobs/app-jobs.component';
 import { AppAppliedComponent } from './components/app-applied/app-applied.component';
 import { AppHomeComponent } from './components/app-home/app-home.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
+import { HighlightPipePipe } from './highlight-pipe.pipe';
+import { FilterPipe } from './filter.pipe';
+import { CandidatessectionComponent } from './candidatessection/candidatessection.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+//import { PostingjobsByMonthComponent } from './postingjobs-by-month/postingjobs-by-month.component';
+
+import { PiechartComponent } from './admin/piechart/piechart.component';
+import { MainComponent } from './admin/main/main.component';
+
+import { JobsdataComponent } from './admin/jobsdata/jobsdata.component';
+//import { BaseChartModule } from 'ng2-charts';
+import { JobssectionComponent } from './components/jobssection/jobssection.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+// import { HighchartsChartModule } from 'highcharts-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
+
 
 
 
@@ -36,7 +56,6 @@ import { ClientHomeComponent } from './components/client-home/client-home.compon
     SignupComponent,
     DashboardComponent,
     JobsComponent,
-    JobssectionComponent,
     AppLoginComponent,
     AppSignupComponent,
     AppDashboardComponent,
@@ -44,6 +63,19 @@ import { ClientHomeComponent } from './components/client-home/client-home.compon
     AppAppliedComponent,
     AppHomeComponent,
     ClientHomeComponent,
+    HighlightPipePipe,
+    FilterPipe,
+    CandidatessectionComponent,
+  
+    PiechartComponent,
+    MainComponent,
+  
+    JobsdataComponent,
+    JobssectionComponent,
+
+      
+  
+  
    
     
    
@@ -55,7 +87,15 @@ import { ClientHomeComponent } from './components/client-home/client-home.compon
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    FontAwesomeModule,
+   // BaseChartModule,
+    BrowserAnimationsModule,NgxChartsModule
+   
+  
+    
+   // SyncfusionDashboardsModule
+
     
   ],
   providers: [{

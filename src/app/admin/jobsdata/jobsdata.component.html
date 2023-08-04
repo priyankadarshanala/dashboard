@@ -1,0 +1,46 @@
+
+<div class="widget-container">
+    <div class="widget green">
+      <div class="icon">
+        <fa-icon [icon]="faBriefcase"></fa-icon>
+      </div>
+      <div class="value">
+        <div class="top"> {{ totalJobsCount }}</div>
+        <div class="bottom">Total Jobs</div>
+      </div>
+    </div>
+    <div class="widget yellow">
+      <div class="icon">
+        <fa-icon [icon]="faUsers"></fa-icon>
+      </div>
+      <div class="value">
+        <div class="top">{{ totalApplicantsCount }}</div>
+        <div class="bottom">No.of Applicants</div>
+      </div>
+    </div>
+    <div class="widget blue">
+      <div class="icon">
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </div>
+      <div class="value">
+        <div class="top">{{ totalAppliedJobsCount }}</div>
+        <div class="bottom">Applied Jobs</div>
+      </div>
+    </div>
+    <div class="widget red ">
+      <div class="icon">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </div>
+      <div class="value">
+        <div class="top">{{ notAppliedJobsCount }}</div>
+        <div class="bottom">Not Applied Jobs</div>
+      </div>
+    </div>
+  </div>
+  <!-- Add the pie chart component with the input properties -->
+<!-- <app-piechart [totalJobsCount]="totalJobsCount" [totalAppliedJobsCount]="totalAppliedJobsCount" [notAppliedJobsCount]="notAppliedJobsCount"></app-piechart> -->
+<!-- <app-piechart
+  [totalJobsCount]="totalJobsCount"
+  [totalAppliedJobsCount]="totalAppliedJobsCount"
+  [notAppliedJobsCount]="notAppliedJobsCount"
+></app-piechart> -->

@@ -1,50 +1,40 @@
 
-// html, body {
-//   height: 100vh;
-  
-// padding: 0;
-// margin: 0;
-//   background-color: white;
-// }
+.border
 
+{
 
+border-color: black;
 
-// .body{
-//     height: 100%;
-//     display: flex;
-//     margin: 0;
-//     padding: 0;
-//     width: auto;
-//     background-color: white;
-//   }
-  
-//   .container {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     height: 100vh;
-  
-//   }
-  
-//   form {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//   }
-  
-//   input {
-//     margin-bottom: 10px;
-//     width: 300px;
-//     padding: 10px;
-//     font-size: 16px;
-//   }
-  
-//   button {
-//     padding: 10px 20px;
-//   }
-//   .heading{
-//     text-align:center;
-//     color: rgb(98, 85, 243);
-//     font-size: 50px;
-//   }
+width: 100px;
+
+}
+.icon {
+  margin-right: 20px; /* Adjust the value to your desired spacing */
+}
+.position-relative {
+  position: relative;
+}
+
+.search-icon,
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  cursor: pointer;
+}
+
+.clear-icon {
+  right: 120px; /* Adjust the value to position the clear icon */
+}
+.search-icon{
+  right: 80px;
+}
+.form-control{
+  width: 1280px;
+  background-color: rgb(211, 239, 244);
+}
+.highlighted {
+  background-color:rgb(246, 210, 216);
+  font-weight: bold;
+}

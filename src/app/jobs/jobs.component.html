@@ -1,230 +1,299 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-</head>
-<body>
-  
-  <div class="container">
-   
-    <form #contactForm="ngForm" (ngSubmit)="postcontact(contactForm.value)">
-     <div class="total">
-     <div class="row">
-      <h3>JOBID</h3>
-      <input type="text" placeholder="ENTER JOBID" name="jobId" ngModel>
-      <h3>COMPANY NAME</h3>
-      <input type="text" placeholder="ENTER COMPANY NAME" name="companyName" ngModel required>
-      <h3>JOB TITLE</h3>
-      <input type="text" placeholder="Enter JOBTITLE" name="jobTitle" ngModel required>
-      <h3>EXPERIENCE</h3>
-      <input type="text" placeholder="Enter Experience" name="experience" ngModel required>
-</div>
-<div class="row mar">
-<h3>SKILLS</h3>
-  <input type="text" placeholder="Enter Skills" name="skills" ngModel required>
-  <h3>JOB TYPE</h3>
-      <input type="text" placeholder="Enter JOB TYPE" name="jobType" ngModel required>
-      <h3>LOCATION</h3>
-      <input type="text" placeholder="Enter Location" name="location" ngModel required>
-      <h3>JOB DESCRIPTION</h3>
-      <input placeholder="Enter JOB DESCRIPTION" name="jobDescription" ngModel required>
-</div>
-</div>
-      <button type="submit" [disabled]="!contactForm.valid" style="background-color: rgb(69, 156, 100);">Post Job</button>
-    </form>
-    <h1 *ngIf="istrue" style="color: green;">Job Posted Sucessfully</h1>
-  </div>
-  
+  <!-- Bootstrap CSS -->
 
-</body>
-</html>
- -->
-
-
- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
- 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: white;
-    }
+    h1 {
 
- 
-
-    .form-container {
-      width: 800px;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
- 
-
-    .form-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
-
- 
-
-    .form-group {
-      flex-grow: 1;
-      margin-right: 10px;
-    }
-
- 
-
-    .form-group label {
-      font-weight: bold;
-    }
-
- 
-
-    .form-group input,
-    .form-group textarea {
-      border-radius: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-    }
-
- 
-
-    .form-group textarea {
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    width: 100%;
-    font-size: 16px;
-    resize: vertical;
-    height: 120px;
-  }
-
- 
-
-    .btn-primary {
-      background-color: #4CAF50;
-      border: none;
-      border-radius: 20px;
-      padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
- 
-
-    .success-message {
       color: green;
-      font-weight: bold;
-      margin-top: 10px;
+
+      text-align: center;
+
+      margin-top: 20px;
+
     }
-</style>
+
+.form-heading {
+
+      font-weight: bold;
+
+      border-bottom: 2px solid #333;
+
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+
+    }
+  .form-heading-id,
+
+    .form-heading-company {
+
+      border-right: 2px solid #333;
+
+      padding-right: 10px;
+
+      margin-right: 10px;
+
+    }
+  input[type="text"],
+
+    input[type="date"],
+
+    textarea {
+
+      width: 100%;
+
+      padding: 12px;
+
+      border-radius: 5px;
+
+      border: 1px solid #ccc;
+
+      font-size: 16px;
+
+    }
+  input[type="text"]:focus,
+
+    input[type="date"]:focus,
+
+    textarea:focus {
+
+      outline: none;
+
+      border-color: rgb(35, 73, 170);
+
+    }
+ .button-container {
+
+      text-align: center;
+
+      margin-top: 20px;
+
+    }
+
+    button[type="submit"] {
+
+      background-color: rgb(66, 46, 223);
+
+      color: #fff;
+
+      border: none;
+
+      padding: 12px 30px;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+      font-size: 16px;
+
+    }
+
+    .heading {
+
+      font-weight: 500;
+
+      font-size: 20px;
+
+    }
+
+    .fields {
+
+      padding: 100px;
+
+    }
+
+    .head {
+
+      text-align: center;
+
+    }
+
+    body {
+
+      background-color: rgb(210, 238, 243);
+
+    }
+  </style>
+
 </head>
 
- 
-
 <body>
-<div class="form-container">
-<h1 class="text-center">Job Posting Form</h1>
-<form #contactForm="ngForm" (ngSubmit)="postcontact(contactForm.value)">
-<div class="form-row">
-<div class="form-group">
-<label for="jobId">Job ID</label>
-<input type="text" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId" ngModel>
-</div>
-<div class="form-group">
-<label for="companyName">Company Name</label>
-<input type="text" class="form-control" id="companyName" placeholder="Enter Company Name" name="companyName" ngModel required>
-</div>
-</div>
-<div class="form-row">
-<div class="form-group">
-<label for="jobTitle">Job Title</label>
-<input type="text" class="form-control" id="jobTitle" placeholder="Enter Job Title" name="jobTitle" ngModel required>
-</div>
-<div class="form-group">
-<label for="experience">Experience</label>
-<input type="text" class="form-control" id="experience" placeholder="Enter Experience" name="experience" ngModel required>
-</div>
-</div>
-<div class="form-row">
-<div class="form-group">
-<label for="skills">Skills</label>
-<input type="text" class="form-control" id="skills" placeholder="Enter Skills" name="skills" ngModel required>
-</div>
-<div class="form-group">
-<label for="jobType">Job Type</label>
-<input type="text" class="form-control" id="jobType" placeholder="Enter Job Type" name="jobType" ngModel required>
-</div>
-</div>
-<div class="form-row">
-<div class="form-group">
-<label for="location">Location</label>
-<input type="text" class="form-control" id="location" placeholder="Enter Location" name="location" ngModel required>
-</div>
-<div class="form-group">
-<label for="vacancy">Vacancy</label>
-<input type="text" class="form-control" id="vacancy" placeholder="Enter Vacancy" name="vacancy" ngModel required>
-</div>
 
- 
+  <h2 class="head">POST A JOB HERE</h2>
+
+  <div class="fields">
+
+    <form #contactForm="ngForm" (ngSubmit)="postcontact(contactForm.value)">
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="form-group">
+
+            <label for="jobId" class="heading">JOB ID</label>
+
+            <input type="text" class="form-control" placeholder="Enter Job ID" name="jobId" ngModel>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="companyName" class="heading">COMPANY NAME</label>
+
+            <input type="text" class="form-control" placeholder="Enter Company Name" name="companyName" ngModel
+              required>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="jobTitle" class="heading">JOB TITLE</label>
+
+            <input type="text" class="form-control" placeholder="Enter Job Title" name="jobTitle" ngModel required>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="experience" class="heading">EXPERIENCE</label>
+
+            <input type="text" class="form-control" placeholder="Enter Experience" name="experience" ngModel required>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="skills" class="heading">SKILLS</label>
+
+            <input type="text" class="form-control" placeholder="Enter Skills" name="skills" ngModel required>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="form-group">
+
+            <label for="vacancy" class="heading">VACANCY</label>
+
+            <input type="number" class="form-control" placeholder="Enter Vacancy" name="vacancy" ngModel required>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="jobType" class="heading">JOB TYPE</label>
+
+            <input type="text" class="form-control" placeholder="Enter Job Type" name="jobType" ngModel required>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="qualification" class="heading">QUALIFICATION</label>
+
+            <input type="text" class="form-control" placeholder="Enter Qualification" name="qualification" ngModel
+              required>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="postedDate" class="heading">POSTED DATE</label>
+
+            <input type="date" class="form-control" name="postedDate" ngModel required>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="endDate" class="heading">END DATE</label>
+
+            <input type="date" class="form-control" name="endDate" ngModel required>
+
+          </div>
+
+        </div>
 
       </div>
-<div class="form-row">
-<div class="form-group">
-<label for="startDate">Start Date</label>
-<input type="date" class="form-control" id="startDate" name="startDate" ngModel required>
-</div>
-<div class="form-group">
-<label for="endDate">End Date</label>
-<input type="date" class="form-control" id="endDate" name="endDate" ngModel required>
-</div>
-</div>
-<div class="form-row">
-<div class="form-group">
-<label for="salary">Salary</label>
-<input type="text" class="form-control" id="salary" placeholder="Enter Salary" name="salary" ngModel required>
-</div>
-<div class="form-group">
-<label for="workSchedule">Work Schedule</label>
-<select class="form-control" id="workSchedule" name="workSchedule" ngModel required>
-<option value="Full-time">Morning Shift</option>
-<option value="Part-time">Night shift</option>
-</select>
-</div>
-</div>
 
-<div class="form-row">
-<div class="form-group">
-<label for="description">Job Description</label>
-<textarea class="form-control" id="description" rows="4" placeholder="Enter Job Description" name="description" ngModel required></textarea>
-</div>
-</div>
+      <div class="row">
 
- 
+        <div class="col-md-6">
 
-      <div class="text-center">
-<button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Post Job</button>
-</div>
-</form>
-<h1 class="success-message text-center" *ngIf="istrue">Job Posted Successfully</h1>
-</div>
+          <div class="form-group">
 
- 
+            <label for="salary" class="heading">SALARY</label>
+
+            <input type="number" class="form-control" placeholder="Enter Salary" name="salary" ngModel required>
+
+          </div>
+ </div>
+
+  <div class="col-md-6">
+
+          <div class="form-group">
+
+            <label for="companyLocation" class="heading">LOCATION</label>
+
+            <input type="text" class="form-control" placeholder="Enter Location" name="companyLocation" ngModel required>
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+      <div class="container">
+
+        <label for="jobDescription" class="heading">DESCRIPTION</label>
+
+        <textarea rows="6" class="form-control" placeholder="Enter Description" name="jobDescription" ngModel
+          required></textarea>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="button-container text-center">
+
+            <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Post Job</button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </form>
+
+    <h1 *ngIf="istrue">Job Posted Successfully</h1>
+
+  </div>
+
+  <!-- Bootstrap JS -->
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

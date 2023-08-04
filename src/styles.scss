@@ -3,4 +3,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 @import url('assets/css/custom.css');
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Exo", sans-serif;
+   // background-color: #e2a3ef;
+  }
+  
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #a6d5fb;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #012645;
+  }

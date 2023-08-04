@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.required]
+     
     });
   }
 
@@ -37,10 +38,12 @@ export class LoginComponent implements OnInit {
     this.isText ? (this.type = 'text') : (this.type = 'password');
   }
   onSubmit() {
+    debugger;
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       this.auth.signIn(this.loginForm.value).subscribe({
         next: (res) => {
+          debugger;
           console.log(res.message);
           this.loginForm.reset();
           this.auth.storeToken(res.accessToken);
@@ -52,8 +55,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['dashboard'])
         },
         error: (err) => {
-          this.toast.error({detail:"ERROR", summary:"Something went wrong!", duration: 5000});
+debugger;
+          const errorMessage = err.error.message;
+
+          this.toast.error({detail: "ERROR", summary: errorMessage, duration: 50000});
+
           console.log(err);
+
         },
       });
     } else {

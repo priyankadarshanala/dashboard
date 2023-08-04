@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { JobsComponent } from './jobs/jobs.component';
-import { JobssectionComponent } from './jobssection/jobssection.component';
 import { AppLoginComponent } from './components/app-login/app-login.component';
 import { AppSignupComponent } from './components/app-signup/app-signup.component';
 import { AuthnGuard } from './guard/authn.guard';
@@ -14,7 +13,8 @@ import { AppAppliedComponent } from './components/app-applied/app-applied.compon
 import { AppDashboardComponent } from './components/app-dashboard/app-dashboard.component';
 import { AppHomeComponent } from './components/app-home/app-home.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
-
+import { CandidatessectionComponent } from './candidatessection/candidatessection.component';
+import { JobssectionComponent } from './components/jobssection/jobssection.component';
 
 
 
@@ -30,15 +30,19 @@ const routes: Routes = [
     
     {path: 'jobspage', component:AppJobsComponent},
     { path: 'app-applied', component: AppAppliedComponent },
+    { path: '', redirectTo: 'app-home', pathMatch: 'full' },//default route to AppAppliedComponent
     {path:'app-home', component:AppHomeComponent},
   ]},
   {path:'signup', component:SignupComponent},
   {path:'app-signup', component:AppSignupComponent},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard], children:[
     
-    {path: 'home', component:JobssectionComponent},
-    { path: 'jobs', component: JobsComponent },
-    { path: 'client-home', component: ClientHomeComponent }
+ {path: 'home', component:JobssectionComponent},
+   { path: 'jobs', component: JobsComponent },
+   { path: '', redirectTo: 'client-home', pathMatch: 'full' },
+  { path: 'client-home', component: ClientHomeComponent },
+   { path: 'candidatessection', component: CandidatessectionComponent },
+    
   ]
 }
   

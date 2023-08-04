@@ -38,7 +38,11 @@ export class JobsComponent implements OnInit {
       this.location.back();
     }
 
-  }
+   
+}
+
+
+
 
    
 

@@ -1,0 +1,142 @@
+
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 20px;
+  }
+
+
+  .hidden {
+    display: none;
+  }
+   /* Overlay styles */
+
+  /* Styles for the pop-up form */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(222, 194, 194, 0.5);
+    z-index: 9999;
+    display: none;
+  }
+
+  .popup-content {
+    position:relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e9f3fb;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .popup-overlay.show {
+    display: block;
+  }
+  .form-buttons {
+    margin-top: 10px;
+    text-align: right;
+  }
+ 
+ 
+  .highlighted {
+    background-color:rgb(246, 210, 216);
+    font-weight: bold;
+  }
+  // .border
+  //  {
+  // border-color: black;
+  // width: 700px;
+  // margin-left: 20px;
+  //  }
+    /* Basic styles for the input container */
+.search-container {
+  display: flex; /* Use flexbox to create a horizontal layout */
+  align-items: center; /* Center the icons vertically within the input container */
+  position: relative;
+  padding-top: 30px;
+  width: 700px;
+}
+
+/* Oval shape at every edge for the input box */
+.form1 {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+ // padding: 8px 30px 8px 10px;
+  transition: box-shadow 0.3s ease;
+  background-repeat: no-repeat;
+  background-position: 10px center, calc(100% - 30px) center;
+  background-size: 20px 20px; /* Size of the icons */
+  border-color: black;
+  width: 700px;
+  margin-left: 20px;
+  flex-grow: 1; /* Allow the input to grow and fill the available space */
+  font-size: 16px; /* Adjust font size as needed */
+
+  padding: 8px 40px 8px 10px; /* Adjust padding to make room for icons on the right */
+ 
+  position: relative; /* Added to establish a new stacking context */
+}
+
+.form1:focus {
+  box-shadow: 0 0 5px #ccc;
+}
+
+/* Styles for search and clear icons */
+.search-icon,
+.clear-icon {
+ 
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.fa {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px; /* Adjust the icon size as needed */
+}
+
+.search-icon {
+  right: 25px; /* Position the search icon on the right side */
+}
+
+.clear-icon {
+  right: 5px; /* Position the clear icon on the right side, closer to the search icon */
+ 
+}
+
+/* Show clear icon when there is text in the input */
+.form1:not(:placeholder-shown) + .search-icon {
+  display: block;
+}
+
+.form1:not(:placeholder-shown) + .clear-icon {
+  display: block;
+}
+
+/* Styles for the "Not Found" message */
+.not-found {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  color: red;
+  display: none;
+}

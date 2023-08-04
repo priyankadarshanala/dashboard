@@ -1,0 +1,35 @@
+<!-- <div class="chart-container" [chart]="chart"></div> -->
+
+<!-- <div class="chart-container">
+  <chart [options]="chart"></chart>
+</div> -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>S.NO</th>
+      <th>Applicant Name</th>
+      <th>Applicant Email</th>
+      <th>Job Title</th>
+      <th>Company Location</th>
+      <th>Skills</th>
+      <th>Application Date</th> <!-- Add the date column -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let applicant of recentApplicants; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ applicant.applicantName }}</td>
+      <td>{{ applicant.applicantEmail }}</td>
+      <td>{{ applicant.jobTitle }}</td>
+      <td>{{ applicant.companyLocation }}</td>
+      <td>{{ applicant.skills }}</td>
+      <td>{{ applicant.applicationDate | date }}</td> <!-- Display the application date in a formatted way -->
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="recentApplicants.length > 10">
+  <p>Show more recent applicants...</p>
+  <button (click)="showMoreApplicants()">Show more</button>
+</div>
+
